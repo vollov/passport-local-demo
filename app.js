@@ -73,7 +73,8 @@ app.get('/api/loggedin', function(req, res) {
 });
 
 app.post('/api/login',passport.authenticate('local'), function(req, res) {
-	res.send(req.user);
+	console.log('calling /api/login');
+	res.send(200, req.user);
 });
 
 app.get('/api/logout', function(req, res){

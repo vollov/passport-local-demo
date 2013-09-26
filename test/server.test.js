@@ -22,7 +22,7 @@ describe('Test server module', function() {
 						//.expect('Content-Type', /json/)
 						.expect(200)
 						.end(function(err, res) {
-							console.log("res.body = %j", res.body);
+							console.log("[test]: server.res.body = %j", res.body);
 							res.body.user.email.should.equal('mary@demo.org');
 							done();
 						});

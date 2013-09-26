@@ -20,9 +20,9 @@ app.post('/api/login', function(req, res){
 //	var email = req.user.email;
 //	var password = req.user.password;
 //	console.log("email = " + email + ', password =' + password);
-	console.log("req.params = %j",req.params);
-	console.log("req.body.user.email = %j", req.body.user.email);
-	console.log("req.route.path =" + req.route.path);
+	console.log("[server]: req.params = %j",req.params);
+	console.log("[server]: req.body.user.email = %j", req.body.user.email);
+	console.log("[server]: req.route.path =" + req.route.path);
 	res.send(200, req.body);
 });
 
