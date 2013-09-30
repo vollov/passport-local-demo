@@ -17,9 +17,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy(
-	function(email, password, done) {
-		console.log("calling login: %j, %j", email, password);
-		db.findOne('user', {'email': email}, {}, function(err, user){
+	function(username, password, done) {
+		console.log("calling login: %j, %j", username, password);
+		db.findOne('user', {'email': username}, {}, function(err, user){
 			if (err) { return done(err); }
 			if (!user) {
 				return done(null, false, { message: 'Incorrect username.' });
@@ -39,7 +39,7 @@ module.exports = app;
 app.configure(function(){
   
   app.use(express.favicon());
-  //app.use(express.logger('dev'));
+  app.use(express.logger('dev'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.session({ secret: 'keyboard cat' }));
@@ -72,9 +72,9 @@ app.get('/api/loggedin', function(req, res) {
 	res.send(req.isAuthenticated() ? req.user : '0'); 
 });
 
-app.post('/api/login',passport.authenticate('local'), function(req, res) {
+app.post('/api/login',passport.authenticate('local', { session: false }), function(req, res) {
 	console.log('calling /api/login');
-	res.send(200, req.user);
+	res.send(200, req.body);
 });
 
 app.get('/api/logout', function(req, res){

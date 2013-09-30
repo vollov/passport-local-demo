@@ -9,7 +9,7 @@ describe('Test server module', function() {
 			request = request('http://localhost:3000');
 		
 			request.post('/api/login')
-						.send({'user': {'email':'mary@demo.org', 'passowrd':'passwd'}})
+						.send({'user': {'username':'mary@demo.org', 'passowrd':'passwd'}})
 						//.expect('Content-Type', /json/)
 						.expect(200)
 						.end(function(err, res) {
